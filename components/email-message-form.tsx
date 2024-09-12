@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import sendMails from "@/lib/action/sendMails";
-import console from "console";
 
 const formSchema = z.object({
   emails: z
