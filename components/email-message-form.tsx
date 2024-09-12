@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import sendMails from "@/lib/action/sendMails";
+import console from "console";
 
 const formSchema = z.object({
   emails: z
@@ -49,6 +50,7 @@ export default function EmailMessageForm() {
     control: form.control,
   });
 
+  const { isSubmitting } = form.formState;
   const onSubmit = async (data: FormValues) => {
     try {
       const res = await sendMails({
@@ -58,10 +60,11 @@ export default function EmailMessageForm() {
       if (!res.success) {
         throw new Error("Form not Submitted");
       }
-
+      console.log(res);
       alert("Form Submitted");
     } catch (error) {
       alert("Form Not submitted! Check console for details.");
+      console.log(error);
     }
   };
 
@@ -130,8 +133,8 @@ export default function EmailMessageForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            Send Message
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Send Messages"}
           </Button>
         </form>
       </Form>
