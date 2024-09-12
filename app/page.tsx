@@ -1,4 +1,4 @@
-import { EmailMessageForm } from "@/components/email-message-form";
+import EmailMessageForm from "@/components/email-message-form";
 
 export default function Home() {
   return (

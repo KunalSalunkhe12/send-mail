@@ -14,13 +14,14 @@ export default async function sendMails({
   emails,
   message,
 }: {
-  emails: string[];
+  emails: { email: string }[];
   message: string;
 }) {
   try {
+    const emailsList = emails.map((email) => email.email);
     const info = await transporter.sendMail({
       from: process.env.SMTP_USER,
-      to: emails.join(", "),
+      to: emailsList.join(", "),
       subject: `TEST`,
       text: message,
     });
