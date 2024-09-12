@@ -61,6 +61,7 @@ export default function EmailMessageForm() {
       }
       console.log(res);
       alert("Form Submitted");
+      return form.reset();
     } catch (error) {
       alert("Form Not submitted! Check console for details.");
       console.log(error);
